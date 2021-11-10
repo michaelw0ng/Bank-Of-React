@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 
-class CreditsPage extends Component {
-
+class DebitsPage extends Component {
   render() {
     return (
         <div>
-         Credits
+         Debits
          <br></br>
          <Link to="/">Return to Home</Link>
         </div>
@@ -14,4 +13,4 @@ class CreditsPage extends Component {
   }
 }
 
-export default CreditsPage;
+export default DebitsPage;
