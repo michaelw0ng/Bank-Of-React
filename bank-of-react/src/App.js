@@ -31,7 +31,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-
+    fetch("https://moj-api.herokuapp.com/debits")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({debits: result})
+        }
+      );
+      fetch("https://moj-api.herokuapp.com/credits")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({credits: result})
+        }
+      );
   }
 
   render() {
