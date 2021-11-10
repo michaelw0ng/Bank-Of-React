@@ -34,7 +34,7 @@ class LogIn extends Component {
     }
 
     return (
-      <div>
+      <div style={{textAlign: "center"}}>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="userName">User Name</label>

@@ -22,16 +22,36 @@ class App extends Component {
     }
   }
 
+  addDebit = (newDebit) => {
+    this.setState({debits: [...this.state.debits, newDebit]})
+    this.setState({accountBalance: this.state.accountBalance + parseFloat(newDebit.amount)})
+  }
+
   addCredit() {
 
   }
 
-  addDebit() {
-
-  }
 
   componentDidMount() {
-
+    fetch("https://moj-api.herokuapp.com/debits")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({debits: result})
+          for (let i = 0; i < result.length; i++)
+          {
+            let amount = result[i].amount;
+            this.setState({accountBalance: this.state.accountBalance + amount})
+          }
+        }
+      );
+      fetch("https://moj-api.herokuapp.com/credits")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({credits: result})
+        }
+      );
   }
 
   render() {
@@ -47,7 +67,8 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={mockLogIn} />)
-    
+    const CreditsComponent = () => (<CreditsPage credits={this.state.credits} />)
+    const DebitsComponent = () => (<DebitsPage debits={this.state.debits} handleNewDebit={this.addDebit} balance={this.state.accountBalance} />)
 
     return (
       <Router>
@@ -56,8 +77,8 @@ class App extends Component {
             <Route exact path="/" render={HomeComponent} />
             <Route exact path="/userProfile" render={UserProfileComponent} />
             <Route exact path="/login" render={LogInComponent} />
-            <Route exact path="/credits" render={CreditsPage} /> 
-            <Route exact path="/debits" render={DebitsPage} />
+            <Route exact path="/credits" render={CreditsComponent} /> 
+            <Route exact path="/debits" render={DebitsComponent} />
           </div>
         </Switch>
       </Router>

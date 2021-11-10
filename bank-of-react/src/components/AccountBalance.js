@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class AccountBalance extends Component {
   render() {
     return (
-        <div>
+        <div style={{textAlign: "center"}}>
           Balance: {this.props.accountBalance}
         </div>
     );
