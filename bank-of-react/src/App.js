@@ -22,13 +22,15 @@ class App extends Component {
     }
   }
 
+  addDebit = (newDebit) => {
+    this.setState({debits: [...this.state.debits, newDebit]})
+    this.setState({accountBalance: this.state.accountBalance + parseFloat(newDebit.amount)})
+  }
+
   addCredit() {
 
   }
 
-  addDebit() {
-
-  }
 
   componentDidMount() {
     fetch("https://moj-api.herokuapp.com/debits")
@@ -36,6 +38,11 @@ class App extends Component {
       .then(
         (result) => {
           this.setState({debits: result})
+          for (let i = 0; i < result.length; i++)
+          {
+            let amount = result[i].amount;
+            this.setState({accountBalance: this.state.accountBalance + amount})
+          }
         }
       );
       fetch("https://moj-api.herokuapp.com/credits")
@@ -61,7 +68,7 @@ class App extends Component {
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={mockLogIn} />)
     const CreditsComponent = () => (<CreditsPage credits={this.state.credits} />)
-    const DebitsComponent = () => (<DebitsPage debits={this.state.debits} />)
+    const DebitsComponent = () => (<DebitsPage debits={this.state.debits} handleNewDebit={this.addDebit} balance={this.state.accountBalance} />)
 
     return (
       <Router>
