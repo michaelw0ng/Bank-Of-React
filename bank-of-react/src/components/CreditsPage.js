@@ -6,7 +6,7 @@ class CreditsPage extends Component {
   render() {
     return (
         <div style={{textAlign: "center"}}>
-         Credits
+         <h1 style={{fontSize: "50px"}}>Credits</h1>
          <br></br>
          <Link to="/">Return to Home</Link>
         </div>

@@ -24,7 +24,7 @@ class App extends Component {
 
   addDebit = (newDebit) => {
     this.setState({debits: [...this.state.debits, newDebit]})
-    this.setState({accountBalance: this.state.accountBalance + parseFloat(newDebit.amount)})
+    this.setState({accountBalance: this.state.accountBalance - parseFloat(newDebit.amount)})
   }
 
   addCredit() {
@@ -41,7 +41,7 @@ class App extends Component {
           for (let i = 0; i < result.length; i++)
           {
             let amount = result[i].amount;
-            this.setState({accountBalance: this.state.accountBalance + amount})
+            this.setState({accountBalance: this.state.accountBalance - amount})
           }
         }
       );
