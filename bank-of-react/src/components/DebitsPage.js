@@ -40,7 +40,8 @@ class DebitsPage extends Component {
       debit.innerHTML = `${description.value}`
       let debit_amount = document.createElement("p");
 
-      let date = `${new Date()}`
+      let date = `${new Date()}`;
+
 
       debit_amount.innerHTML = `Amount: ${dollar} Date: ${date}`;
       debits_div.appendChild(debit);
@@ -57,7 +58,7 @@ class DebitsPage extends Component {
       return (
          <div style={{textAlign: "center"}}>
             <h1 id="title" style={{ fontSize: "50px" }}>Debits</h1>
-            <p>Balance: {this.props.balance}</p>
+            <p>Balance: {this.props.balance.toFixed(2)}</p>
             <div>
                <p>Debit Description</p>
                <input id="debit"></input>
