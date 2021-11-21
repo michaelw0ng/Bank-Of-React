@@ -88,19 +88,11 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/Bank-Of-React/" render={HomeComponent} />
-          <Route
-            exact
-            path="/Bank-Of-React/userProfile"
-            render={UserProfileComponent}
-          />
-          <Route exact path="/Bank-Of-React/login" render={LogInComponent} />
-          <Route
-            exact
-            path="/Bank-Of-React/credits"
-            render={CreditsComponent}
-          />
-          <Route exact path="/Bank-Of-React/debits" render={DebitsComponent} />
+          <Route exact path="/" render={HomeComponent} />
+          <Route exact path="/userProfile" render={UserProfileComponent} />
+          <Route exact path="/login" render={LogInComponent} />
+          <Route exact path="/credits" render={CreditsComponent} />
+          <Route exact path="/debits" render={DebitsComponent} />
         </Switch>
       </Router>
     );
